@@ -27,7 +27,7 @@ export default function App() {
             <main>
                 <section id="sobre-mi" className="hero">
                     <div className="hero-avatar">
-                        <img src="/imagenes/perfil.jpg" alt="Foto de Jose" className="avatar" />
+                        <img src="imagenes/perfil.jpg" alt="Foto de Jose" className="avatar" />
                     </div>
                     <span className="hero-etiqueta">Desarrollador en formación</span>
                     <h2>Construyendo el futuro, <span className="destacado">una línea de código a la vez</span></h2>

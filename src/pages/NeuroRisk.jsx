@@ -124,7 +124,7 @@ export default function NeuroRisk() {
 
     function notificar(titulo, cuerpo) {
         if (typeof Notification !== "undefined" && Notification.permission === "granted") {
-            new Notification(titulo, { body: cuerpo, icon: "/favicon.svg" });
+            new Notification(titulo, { body: cuerpo, icon: "favicon.svg" });
         }
     }
 
