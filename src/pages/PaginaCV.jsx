@@ -4,6 +4,7 @@ import { ExternalLink, Mail, MapPin, Printer } from "lucide-react";
 import { CV } from "../data/cv";
 import useTema from "../hooks/useTema";
 import BotonTema from "../components/BotonTema";
+import Meteors from "../components/Meteors";
 
 export default function PaginaCV() {
     const [tema, setTema] = useTema();
@@ -15,6 +16,9 @@ export default function PaginaCV() {
 
     return (
         <>
+            <div className="meteores-fondo" aria-hidden="true">
+                <Meteors number={60} />
+            </div>
             <Link to="/" className="cv-volver" aria-label="Volver al inicio">
                 ← Volver
             </Link>

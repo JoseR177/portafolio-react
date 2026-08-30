@@ -3,11 +3,11 @@ import { PROYECTOS } from "./proyectos";
 export const CV = {
     nombre: "Jose",
     apellido: "",
-    cargo: "Desarrollador en formación",
+    cargo: "Desarrollador web",
     resumen:
-        "Estoy aprendiendo a programar desde cero, con la mira puesta en crear cosas que realmente importen. Me enfoco en front-end con HTML, CSS y JavaScript, y construyo proyectos como NeuroRisk, un prototipo con IA para estimar el riesgo de crisis epilépticas.",
+        "Desarrollador web enfocado en front-end con React, HTML, CSS y JavaScript. Me apasiona construir soluciones que realmente importen, como NeuroRisk, un prototipo con IA para estimar el riesgo de crisis epilépticas.",
     contacto: {
-        email: "tucorreo@ejemplo.com",
+        email: "jr5716413@gmail.com",
         ubicacion: "Colombia",
         github: "https://github.com/",
         linkedin: "https://www.linkedin.com/in/",
@@ -23,11 +23,11 @@ export const CV = {
     ],
     experiencia: [
         {
-            rol: "Desarrollador en formación — Proyecto personal",
+            rol: "Desarrollador web — Proyecto personal",
             lugar: "Portafolio y app propia",
             periodo: "2025 — Presente",
             detalle:
-                "Construyo y mantengo este portafolio con React y Vite, y desarrollo NeuroRisk, un prototipo con IA que estima el riesgo de crisis epilépticas con monitoreo simulado, alertas y SOS. Aprendo resolviendo problemas reales.",
+                "Construyo y mantengo este portafolio con React y Vite, y desarrollo NeuroRisk, un prototipo con IA que estima el riesgo de crisis epilépticas con monitoreo simulado, alertas y SOS.",
         },
     ],
     habilidades: [

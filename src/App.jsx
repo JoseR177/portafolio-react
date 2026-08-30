@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Activity, FileText, FolderKanban, Home, Layers, Mail } from "lucide-react";
 import Footer from "./components/Footer";
@@ -6,40 +6,86 @@ import Terminal from "./components/Terminal";
 import ShineBorder from "./components/ShineBorder";
 import BotonTema from "./components/BotonTema";
 import FadeIn from "./components/FadeIn";
+import Marquee from "./components/Marquee";
+import Meteors from "./components/Meteors";
 import { PROYECTOS } from "./data/proyectos";
 import useTema from "./hooks/useTema";
 import { Dock, DockIcon } from "./components/Dock";
 
-const HABILIDADES = [
-    { nombre: "HTML5", nivel: 80 },
-    { nombre: "CSS3", nivel: 75 },
-    { nombre: "JavaScript", nivel: 55 },
-    { nombre: "Flexbox", nivel: 70 },
-    { nombre: "Responsive Design", nivel: 65 },
-    { nombre: "Git & GitHub", nivel: 50 },
+const ESPECIALIDADES = [
+    {
+        numero: "01",
+        titulo: "Frontend",
+        descripcion:
+            "Construyo interfaces con React, HTML5 y CSS3, con foco en diseño responsive y componentes limpios.",
+        tags: ["React", "HTML5", "CSS3", "Vite"],
+    },
+    {
+        numero: "02",
+        titulo: "JavaScript",
+        descripcion:
+            "Doy vida a las páginas con lógica en JavaScript, interacciones y manejo de estado en el navegador.",
+        tags: ["JavaScript", "ES6+", "Eventos", "DOM"],
+    },
+    {
+        numero: "03",
+        titulo: "IA Aplicada",
+        descripcion:
+            "Desarrollo proyectos con IA, como NeuroRisk, un prototipo que estima el riesgo de crisis epilépticas.",
+        tags: ["IA", "Prototipos", "NeuroRisk"],
+    },
+    {
+        numero: "04",
+        titulo: "Git & GitHub",
+        descripcion:
+            "Versiono mi código, colaboro en proyectos y mantengo un flujo de trabajo ordenado.",
+        tags: ["Git", "GitHub", "Workflow"],
+    },
 ];
+
+function desplazarA(id, evento) {
+    evento.preventDefault();
+    const destino = document.getElementById(id);
+    if (destino) destino.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export default function App() {
     const [tema, setTema] = useTema();
 
     return (
         <>
+            <div className="meteores-fondo" aria-hidden="true">
+                <Meteors number={60} />
+            </div>
             <main>
                 <section id="sobre-mi" className="hero">
                     <div className="hero-avatar">
                         <img src="imagenes/perfil.jpg" alt="Foto de Jose" className="avatar" />
                     </div>
-                    <span className="hero-etiqueta">Desarrollador en formación</span>
-                    <h2>Construyendo el futuro, <span className="destacado">una línea de código a la vez</span></h2>
-                    <p>Estoy aprendiendo a programar desde cero, con la mira puesta en crear cosas que realmente importen. Cada proyecto es un paso más hacia soluciones reales — como NeuroRisk, mi app para estimar el riesgo de una posible crisis epiléptica.</p>
+                    <span className="hero-etiqueta">Front-end · React</span>
+                    <h2>Construyo el futuro, <span className="destacado">una línea de código a la vez</span></h2>
+                    <p>Soy desarrollador web enfocado en front-end con React, HTML, CSS y JavaScript. Me apasiona construir soluciones que realmente importen — como NeuroRisk, mi app con IA para estimar el riesgo de una posible crisis epiléptica.</p>
                     <div className="hero-botones">
-                        <a href="#proyectos" className="boton-primario">Ver proyectos</a>
-                        <a href="#contacto" className="boton-secundario">Contáctame</a>
+                        <a href="#proyectos" className="boton-primario" onClick={(e) => desplazarA("proyectos", e)}>Ver proyectos</a>
+                        <a href="#contacto" className="boton-secundario" onClick={(e) => desplazarA("contacto", e)}>Contáctame</a>
                     </div>
                     <Terminal />
                 </section>
 
-                <SeccionHabilidades />
+                <Marquee
+                    items={[
+                        "REACT",
+                        "HTML5",
+                        "CSS3",
+                        "JAVASCRIPT",
+                        "VITE",
+                        "IA APLICADA",
+                        "NEURORISK",
+                        "DISEÑO RESPONSIVE",
+                    ]}
+                />
+
+                <SeccionEspecialidades />
                 <SeccionProyectos />
                 <SeccionContacto />
             </main>
@@ -49,22 +95,22 @@ export default function App() {
             <div className="dock-flotante">
                 <Dock>
                     <DockIcon>
-                        <a href="#sobre-mi" aria-label="Sobre mí"><Home size={22} /></a>
+                        <a href="#sobre-mi" aria-label="Sobre mí" onClick={(e) => desplazarA("sobre-mi", e)}><Home size={22} /></a>
                     </DockIcon>
                     <DockIcon>
-                        <a href="#habilidades" aria-label="Habilidades"><Layers size={22} /></a>
+                        <a href="#habilidades" aria-label="Habilidades" onClick={(e) => desplazarA("habilidades", e)}><Layers size={22} /></a>
                     </DockIcon>
                     <DockIcon>
-                        <a href="#proyectos" aria-label="Proyectos"><FolderKanban size={22} /></a>
+                        <a href="#proyectos" aria-label="Proyectos" onClick={(e) => desplazarA("proyectos", e)}><FolderKanban size={22} /></a>
                     </DockIcon>
                     <DockIcon>
-                        <a href="#proyectos" aria-label="Proyectos"><Activity size={22} /></a>
+                        <Link to="/neuro-risk" aria-label="NeuroRisk"><Activity size={22} /></Link>
                     </DockIcon>
                     <DockIcon>
                         <Link to="/cv" aria-label="Currículum"><FileText size={22} /></Link>
                     </DockIcon>
                     <DockIcon>
-                        <a href="#contacto" aria-label="Contacto"><Mail size={22} /></a>
+                        <a href="#contacto" aria-label="Contacto" onClick={(e) => desplazarA("contacto", e)}><Mail size={22} /></a>
                     </DockIcon>
                     <DockIcon>
                         <BotonTema tema={tema} setTema={setTema} />
@@ -75,29 +121,24 @@ export default function App() {
     );
 }
 
-function SeccionHabilidades() {
-    const [animado, setAnimado] = useState(false);
-
-    useEffect(() => {
-        const temporizador = setTimeout(() => setAnimado(true), 200);
-        return () => clearTimeout(temporizador);
-    }, []);
-
+function SeccionEspecialidades() {
     return (
         <section id="habilidades">
-            <h2>Lo que estoy aprendiendo</h2>
-            <div className="skills-grid">
-                {HABILIDADES.map((habilidad, i) => (
-                    <FadeIn key={habilidad.nombre} delay={(i % 3) * 0.08}>
-                        <div className="skill-card">
-                            <h3>{habilidad.nombre}</h3>
-                            <div className="skill-barra">
-                                <div
-                                    className="skill-progreso"
-                                    style={{ width: animado ? habilidad.nivel + "%" : "0%" }}
-                                ></div>
-                            </div>
-                        </div>
+            <span className="seccion-etiqueta">// S01 · Especialidades</span>
+            <h2>Lo que hago</h2>
+            <div className="especialidades-grid">
+                {ESPECIALIDADES.map((especialidad, i) => (
+                    <FadeIn key={especialidad.numero} delay={i * 0.08}>
+                        <article className="especialidad-card">
+                            <span className="especialidad-numero">{especialidad.numero}</span>
+                            <h3>{especialidad.titulo}</h3>
+                            <p>{especialidad.descripcion}</p>
+                            <ul className="especialidad-tags">
+                                {especialidad.tags.map((tag) => (
+                                    <li key={tag}>{tag}</li>
+                                ))}
+                            </ul>
+                        </article>
                     </FadeIn>
                 ))}
             </div>
@@ -108,11 +149,13 @@ function SeccionHabilidades() {
 function SeccionProyectos() {
     return (
         <section id="proyectos">
+            <span className="seccion-etiqueta">// S02 · Trabajo</span>
             <h2>Mis Proyectos</h2>
             <div className="proyectos-grid">
                 {PROYECTOS.map((proyecto, i) => (
                     <FadeIn key={proyecto.slug} delay={i * 0.1}>
-                        <div
+                        <Link
+                            to={"/" + proyecto.slug}
                             className={"proyecto" + (proyecto.destacado ? " proyecto-destacado" : "")}
                         >
                             {proyecto.destacado && (
@@ -122,19 +165,36 @@ function SeccionProyectos() {
                                     shineColor={["#00ff9d", "#ffd60a", "#ff2d55"]}
                                 />
                             )}
-                            {proyecto.badge && (
-                                <span className="proyecto-badge">{proyecto.badge}</span>
+                            {proyecto.imagen && (
+                                <div className="proyecto-imagen">
+                                    <img src={proyecto.imagen} alt={proyecto.titulo} />
+                                </div>
                             )}
-                            <h3>{proyecto.titulo}</h3>
-                            <p>{proyecto.descripcion}</p>
-                            <Link to={"/" + proyecto.slug}>Ver más →</Link>
-                        </div>
+                            <div className="proyecto-contenido">
+                                {proyecto.badge && (
+                                    <span className="proyecto-badge">{proyecto.badge}</span>
+                                )}
+                                <h3>{proyecto.titulo}</h3>
+                                <p>{proyecto.descripcion}</p>
+                                {proyecto.tags && (
+                                    <ul className="proyecto-tags">
+                                        {proyecto.tags.map((tag) => (
+                                            <li key={tag}>{tag}</li>
+                                        ))}
+                                    </ul>
+                                )}
+                                <span className="proyecto-enlace">Ver proyecto →</span>
+                            </div>
+                        </Link>
                     </FadeIn>
                 ))}
                 <FadeIn delay={0.1}>
-                    <div className="proyecto">
-                        <h3>Próximo proyecto</h3>
-                        <p>Espacio reservado para futuros trabajos.</p>
+                    <div className="proyecto proyecto-proximo">
+                        <div className="proyecto-contenido">
+                            <span className="proyecto-badge">Próximo</span>
+                            <h3>Próximo proyecto</h3>
+                            <p>Espacio reservado para futuros trabajos.</p>
+                        </div>
                     </div>
                 </FadeIn>
             </div>
@@ -142,7 +202,7 @@ function SeccionProyectos() {
     );
 }
 
-const EMAIL_CONTACTO = "tucorreo@ejemplo.com";
+const EMAIL_CONTACTO = "jr5716413@gmail.com";
 
 function SeccionContacto() {
     const [nombre, setNombre] = useState("");
@@ -175,12 +235,13 @@ function SeccionContacto() {
 
     return (
         <section id="contacto">
+            <span className="seccion-etiqueta">// S03 · Contacto</span>
             <h2>Contáctame</h2>
-            <p>¿Quieres hablar conmigo? Escríbeme un mensaje.</p>
+            <p className="seccion-expl">¿Quieres hablar conmigo o trabajar juntos? Escríbeme un mensaje y te responderé lo antes posible.</p>
 
             <form id="formContacto" onSubmit={enviar}>
                 <div className="campo">
-                    <label htmlFor="nombre">Nombre:</label>
+                    <label htmlFor="nombre">Nombre</label>
                     <input
                         type="text"
                         id="nombre"
@@ -191,18 +252,18 @@ function SeccionContacto() {
                 </div>
 
                 <div className="campo">
-                    <label htmlFor="email">Correo:</label>
+                    <label htmlFor="email">Correo</label>
                     <input
                         type="email"
                         id="email"
-                        placeholder="tucorreo@ejemplo.com"
+                        placeholder="ejemplo@correo.com"
                         value={email}
                         onChange={(evento) => setEmail(evento.target.value)}
                     />
                 </div>
 
                 <div className="campo">
-                    <label htmlFor="mensajeTexto">Mensaje:</label>
+                    <label htmlFor="mensajeTexto">Mensaje</label>
                     <textarea
                         id="mensajeTexto"
                         placeholder="Escribe tu mensaje..."
@@ -211,7 +272,9 @@ function SeccionContacto() {
                     ></textarea>
                 </div>
 
-                <button type="submit">Enviar</button>
+                <button type="submit" className="enviar-boton">
+                    <Mail size={16} /> Enviar mensaje
+                </button>
             </form>
 
             {mensaje.texto && (

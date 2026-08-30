@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Footer from "../components/Footer";
 import FadeIn from "../components/FadeIn";
+import Meteors from "../components/Meteors";
 import ShineBorder from "../components/ShineBorder";
 import { detenerAlarma, prepararAudio, tocarAlarma } from "../utils/alarma";
 
@@ -36,6 +37,12 @@ const RECOMENDACIONES = {
         "Activa tu contacto de emergencia y sigue tu plan de acción para crisis.",
     ],
 };
+
+function desplazarA(id, evento) {
+    evento.preventDefault();
+    const destino = document.getElementById(id);
+    if (destino) destino.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export default function NeuroRisk() {
     const [activo, setActivo] = useState(false);
@@ -194,6 +201,9 @@ export default function NeuroRisk() {
 
     return (
         <>
+            <div className="meteores-fondo" aria-hidden="true">
+                <Meteors number={60} />
+            </div>
             <Link to="/" className="volver-flotante" aria-label="Volver al inicio">
                 ← Volver
             </Link>
@@ -210,8 +220,8 @@ export default function NeuroRisk() {
                                 notificaciones y alarmas cuando el riesgo es alto.
                             </p>
                             <div className="hero-botones izquierda">
-                                <a href="#app-monitor" className="boton-primario">Probar la app</a>
-                                <a href="#como-funciona" className="boton-secundario">Cómo funciona</a>
+                                <a href="#app-monitor" className="boton-primario" onClick={(e) => desplazarA("app-monitor", e)}>Probar la app</a>
+                                <a href="#como-funciona" className="boton-secundario" onClick={(e) => desplazarA("como-funciona", e)}>Cómo funciona</a>
                             </div>
                         </div>
                     </FadeIn>

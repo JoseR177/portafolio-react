@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 const LINEAS = [
     { tipo: "typing", texto: "jose@dev:~$ whoami" },
-    { tipo: "fade", texto: "Jose — Desarrollador en formación" },
+    { tipo: "fade", texto: "Jose — Desarrollador web" },
     { tipo: "typing", texto: "jose@dev:~$ habilidades" },
     { tipo: "fade", texto: "> HTML5 · CSS3 · JavaScript · Git" },
     { tipo: "typing", texto: "jose@dev:~$ proyecto_actual" },
