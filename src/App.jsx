@@ -31,8 +31,8 @@ const ESPECIALIDADES = [
         numero: "03",
         titulo: "IA Aplicada",
         descripcion:
-            "Desarrollo proyectos con IA, como NeuroRisk, un prototipo que estima el riesgo de crisis epilépticas.",
-        tags: ["IA", "Prototipos", "NeuroRisk"],
+            "Desarrollo proyectos con IA, como NeuroFisk, un prototipo que estima el riesgo de crisis epilépticas.",
+        tags: ["IA", "Prototipos", "NeuroFisk"],
     },
     {
         numero: "04",
@@ -64,7 +64,7 @@ export default function App() {
                     </div>
                     <span className="hero-etiqueta">Front-end · React</span>
                     <h2>Construyo el futuro, <span className="destacado">una línea de código a la vez</span></h2>
-                    <p>Soy desarrollador web enfocado en front-end con React, HTML, CSS y JavaScript. Me apasiona construir soluciones que realmente importen — como NeuroRisk, mi app con IA para estimar el riesgo de una posible crisis epiléptica.</p>
+                    <p>Soy desarrollador web enfocado en front-end con React, HTML, CSS y JavaScript. Me apasiona construir soluciones que realmente importen — como NeuroFisk, mi app con IA para estimar el riesgo de una posible crisis epiléptica.</p>
                     <div className="hero-botones">
                         <a href="#proyectos" className="boton-primario" onClick={(e) => desplazarA("proyectos", e)}>Ver proyectos</a>
                         <a href="#contacto" className="boton-secundario" onClick={(e) => desplazarA("contacto", e)}>Contáctame</a>
@@ -80,7 +80,7 @@ export default function App() {
                         "JAVASCRIPT",
                         "VITE",
                         "IA APLICADA",
-                        "NEURORISK",
+                        "NEUROFISK",
                         "DISEÑO RESPONSIVE",
                     ]}
                 />
@@ -104,7 +104,7 @@ export default function App() {
                         <a href="#proyectos" aria-label="Proyectos" onClick={(e) => desplazarA("proyectos", e)}><FolderKanban size={22} /></a>
                     </DockIcon>
                     <DockIcon>
-                        <Link to="/neuro-risk" aria-label="NeuroRisk"><Activity size={22} /></Link>
+                        <Link to="/neurofisk" aria-label="NeuroFisk"><Activity size={22} /></Link>
                     </DockIcon>
                     <DockIcon>
                         <Link to="/cv" aria-label="Currículum"><FileText size={22} /></Link>

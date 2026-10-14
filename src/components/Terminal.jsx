@@ -6,8 +6,8 @@ const LINEAS = [
     { tipo: "typing", texto: "jose@dev:~$ habilidades" },
     { tipo: "fade", texto: "> HTML5 · CSS3 · JavaScript · Git" },
     { tipo: "typing", texto: "jose@dev:~$ proyecto_actual" },
-    { tipo: "fade", texto: "> NeuroRisk — IA anti-crisis" },
-    { tipo: "fade", texto: "> Fase: prototipo con monitoreo simulado" },
+    { tipo: "fade", texto: "> NeuroFisk — IA anti-crisis" },
+    { tipo: "fade", texto: "> Web (PWA) + Android con Bluetooth" },
 ];
 
 const VELOCIDAD_TECLEO = 60; // ms por carácter

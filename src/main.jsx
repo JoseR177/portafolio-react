@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
-import NeuroRisk from './pages/NeuroRisk.jsx'
+import NeuroFisk from './pages/NeuroFisk.jsx'
 import PaginaCV from './pages/PaginaCV.jsx'
 
 createRoot(document.getElementById('root')).render(
@@ -11,7 +11,7 @@ createRoot(document.getElementById('root')).render(
     <HashRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/neuro-risk" element={<NeuroRisk />} />
+        <Route path="/neurofisk" element={<NeuroFisk />} />
         <Route path="/cv" element={<PaginaCV />} />
       </Routes>
     </HashRouter>

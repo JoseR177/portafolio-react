@@ -44,7 +44,7 @@ function desplazarA(id, evento) {
     if (destino) destino.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-export default function NeuroRisk() {
+export default function NeuroFisk() {
     const [activo, setActivo] = useState(false);
     const [señales, setSeñales] = useState({ frecuencia: 78, movimiento: 30, fatiga: 35, aura: false });
     const [riesgo, setRiesgo] = useState(14);
@@ -55,7 +55,7 @@ export default function NeuroRisk() {
     const [abierto, setAbierto] = useState(null);
     const [contacto, setContacto] = useState(() => {
         try {
-            const guardado = JSON.parse(localStorage.getItem("nr-contacto"));
+            const guardado = JSON.parse(localStorage.getItem("nf-contacto"));
             return guardado || { nombre: "", telefono: "" };
         } catch {
             return { nombre: "", telefono: "" };
@@ -121,7 +121,7 @@ export default function NeuroRisk() {
             setAlarmaActiva(true);
             tocarAlarma();
             notificar(
-                "NeuroRisk — Riesgo alto",
+                "NeuroFisk — Riesgo alto",
                 "Riesgo estimado alto de una posible crisis. Abre la app y sigue tus recomendaciones."
             );
         } else if (nivel !== "alto") {
@@ -166,7 +166,7 @@ export default function NeuroRisk() {
         prepararAudio();
         tocarAlarma();
         setAlarmaActiva(true);
-        notificar("NeuroRisk — Prueba de alarma", "Así se ve una alerta de riesgo alto.");
+        notificar("NeuroFisk — Prueba de alarma", "Así se ve una alerta de riesgo alto.");
     }
 
     function reconocerAlarma() {
@@ -179,13 +179,13 @@ export default function NeuroRisk() {
         tocarAlarma();
         setAlarmaActiva(true);
         setSosConfirmado(true);
-        notificar("NeuroRisk — SOS", "Alarma SOS activada. Avisando a tu contacto de emergencia.");
+        notificar("NeuroFisk — SOS", "Alarma SOS activada. Avisando a tu contacto de emergencia.");
 
         if (contacto.telefono) {
             const texto = encodeURIComponent(
                 "¡Hola " +
                     (contacto.nombre || "amigo") +
-                    "! Te escribo desde NeuroRisk. Necesito ayuda: existe riesgo de una crisis epiléptica. ⚠️"
+                    "! Te escribo desde NeuroFisk. Necesito ayuda: existe riesgo de una crisis epiléptica. ⚠️"
             );
             window.open("https://wa.me/" + contacto.telefono + "?text=" + texto, "_blank", "noopener");
         }
@@ -193,7 +193,7 @@ export default function NeuroRisk() {
 
     function guardarContacto() {
         try {
-            localStorage.setItem("nr-contacto", JSON.stringify(contacto));
+            localStorage.setItem("nf-contacto", JSON.stringify(contacto));
         } catch {
             // almacenamiento no disponible
         }
@@ -212,16 +212,17 @@ export default function NeuroRisk() {
                 <section className="epilepsia-hero">
                     <FadeIn>
                         <div className="epilepsia-hero-info">
-                            <span className="proyecto-badge">Prototipo — Monitoreo simulado</span>
-                            <h1>NeuroRisk</h1>
+                            <span className="proyecto-badge">Prototipo — Web (PWA) + Android</span>
+                            <h1>NeuroFisk</h1>
                             <p>
-                                La app te ayuda a saber cuándo podrías estar cerca de una crisis epiléptica.
-                                Una IA integrada analiza señales de tu cuerpo y activa recomendaciones,
-                                notificaciones y alarmas cuando el riesgo es alto.
+                                NeuroFisk estima el riesgo de una posible crisis epiléptica a partir de señales
+                                en vivo. La app web simula las señales para demostrar el flujo completo; la app
+                                Android además lee el pulso real de un reloj por Bluetooth. Ante un riesgo alto
+                                activa recomendaciones, notificaciones, alarma y un botón SOS.
                             </p>
                             <div className="hero-botones izquierda">
                                 <a href="#app-monitor" className="boton-primario" onClick={(e) => desplazarA("app-monitor", e)}>Probar la app</a>
-                                <a href="#como-funciona" className="boton-secundario" onClick={(e) => desplazarA("como-funciona", e)}>Cómo funciona</a>
+                                <a href="#avances" className="boton-secundario" onClick={(e) => desplazarA("avances", e)}>Ver avances</a>
                             </div>
                         </div>
                     </FadeIn>
@@ -235,26 +236,49 @@ export default function NeuroRisk() {
                             />
                             <h3>Estado del proyecto</h3>
                             <p className="estado-fase">
-                                Fase actual: <strong>Prototipo simulado</strong>
+                                Fase actual: <strong>App Android con pulso real</strong>
                             </p>
-                            <BarraProgreso etiqueta="Investigación" valor={100} color="#00ff9d" />
+                            <BarraProgreso etiqueta="Investigación clínica" valor={100} color="#00ff9d" />
                             <BarraProgreso etiqueta="Definición técnica" valor={100} color="#00ff9d" />
-                            <BarraProgreso etiqueta="Prototipo simulado" valor={60} color="#ffd60a" />
+                            <BarraProgreso etiqueta="Prototipo web (PWA)" valor={100} color="#00ff9d" />
+                            <BarraProgreso etiqueta="App Android + Bluetooth" valor={75} color="#ffd60a" />
+                            <BarraProgreso etiqueta="Validación clínica" valor={10} color="#ff2d55" />
                             <p className="estado-nota">
-                                Progreso estimado. NeuroRisk solo simula señales; la detección real
-                                requeriría sensores certificados.
+                                Progreso estimado. NeuroFisk está en fase 0 de validación: la web simula las
+                                señales y la app Android ya lee pulso real, pero no es un dispositivo médico.
                             </p>
                         </div>
                     </FadeIn>
+                </section>
+
+                <section id="avances">
+                    <span className="seccion-etiqueta">Avances</span>
+                    <h2>Lo que hemos avanzado</h2>
+                    <p className="seccion-expl">
+                        NeuroFisk pasó de un prototipo web a una app instalable con versión Android que lee
+                        el pulso real de un reloj. Estos son los avances principales del proyecto.
+                    </p>
+                    <div className="foco-grid">
+                        {AVANCES.map((item, i) => (
+                            <FadeIn key={item.titulo} delay={i * 0.06}>
+                                <div className="foco-card">
+                                    <span className="foco-numero">{String(i + 1).padStart(2, "0")}</span>
+                                    <h3>{item.titulo}</h3>
+                                    <p>{item.descripcion}</p>
+                                </div>
+                            </FadeIn>
+                        ))}
+                    </div>
                 </section>
 
                 <section id="app-monitor">
                     <span className="seccion-etiqueta">La app</span>
                     <h2>Monitoreo en vivo</h2>
                     <p className="seccion-expl">
-                        Este prototipo simula señales fisiológicas en tiempo real. La IA estima tu
-                        riesgo de crisis y, si es alto, dispara una alarma sonora, una notificación
-                        y recomendaciones. Pulsa <strong>Iniciar</strong> para verlo funcionar.
+                        Este prototipo simula señales fisiológicas en tiempo real con el mismo modelo de
+                        riesgo que usa la app Android. La IA estima tu riesgo de crisis y, si es alto,
+                        dispara una alarma sonora, una notificación y recomendaciones. Pulsa{" "}
+                        <strong>Iniciar</strong> para verlo funcionar.
                     </p>
 
                     <div className="nr-grid">
@@ -387,18 +411,18 @@ export default function NeuroRisk() {
 
                             <div className="nr-tarjeta">
                                 <h3 className="nr-tarjeta-titulo">Contacto de emergencia</h3>
-                                <label className="nr-label" htmlFor="nr-nombre">Nombre</label>
+                                <label className="nr-label" htmlFor="nf-nombre">Nombre</label>
                                 <input
-                                    id="nr-nombre"
+                                    id="nf-nombre"
                                     className="nr-input"
                                     type="text"
                                     placeholder="Ej: mamá"
                                     value={contacto.nombre}
                                     onChange={(e) => setContacto({ ...contacto, nombre: e.target.value })}
                                 />
-                                <label className="nr-label" htmlFor="nr-tel">WhatsApp (con código del país, sin +)</label>
+                                <label className="nr-label" htmlFor="nf-tel">WhatsApp (con código del país, sin +)</label>
                                 <input
-                                    id="nr-tel"
+                                    id="nf-tel"
                                     className="nr-input"
                                     type="tel"
                                     placeholder="Ej: 573001234567 — Colombia"
@@ -421,9 +445,10 @@ export default function NeuroRisk() {
                     </div>
 
                     <p className="nr-disclaimer">
-                        Aviso: NeuroRisk es un prototipo que SIMULA señales para demostrar un concepto.
-                        No es un dispositivo médico, no diagnostica ni certifica crisis. La detección real
-                        requeriría sensores validados y aprobación médica.
+                        Aviso: la versión web de NeuroFisk SIMULA las señales para demostrar el concepto.
+                        La app Android ya lee el pulso real de un reloj compatible, pero NeuroFisk no es un
+                        dispositivo médico: no diagnostica ni certifica crisis. La detección fiable requiere
+                        sensores validados y validación clínica.
                     </p>
                 </section>
 
@@ -495,8 +520,10 @@ nivel = riesgo >= 65 ? ALTO
                     <span className="seccion-etiqueta">Actualizaciones</span>
                     <h2>Bitácora de avances</h2>
                     <ul className="actualizaciones">
-                        <li><strong>Agosto 2026:</strong> NeuroRisk pasa a prototipo: monitoreo simulado en vivo, IA de riesgo, recomendaciones, notificaciones, alarma sonora y botón SOS.</li>
-                        <li><strong>Agosto 2026:</strong> Inicio de la investigación teórica y definición del problema a resolver.</li>
+                        <li><strong>Octubre 2026:</strong> rediseño completo con paleta violeta/magenta, modo oscuro, onboarding y SOS con cuenta atrás cancelable.</li>
+                        <li><strong>Octubre 2026:</strong> la app Android lee el pulso real de un reloj por Bluetooth; alarma y notificación verificadas en dispositivo.</li>
+                        <li><strong>Septiembre 2026:</strong> primera versión web (PWA) con monitoreo simulado, modelo de riesgo, recomendaciones y botón SOS.</li>
+                        <li><strong>Agosto 2026:</strong> investigación del problema y definición técnica del prototipo.</li>
                     </ul>
                     <p className="bitacora-pronto">Próximamente iré subiendo nuevas entradas conforme avance el proyecto.</p>
                 </section>
@@ -577,27 +604,60 @@ function BarraProgreso({ etiqueta, valor, color }) {
     );
 }
 
+const AVANCES = [
+    {
+        titulo: "Rediseño y modo oscuro",
+        descripcion:
+            "Interfaz renovada con paleta violeta/magenta, nueva tipografía y modo claro, oscuro o automático que se recuerda entre sesiones.",
+    },
+    {
+        titulo: "App Android con Bluetooth",
+        descripcion:
+            "Versión en React Native (Expo) que lee el pulso real de un reloj por el servicio BLE estándar (0x180D) y usa el acelerómetro del teléfono para el movimiento.",
+    },
+    {
+        titulo: "PWA instalable",
+        descripcion:
+            "La versión web se instala en el celular con su propio ícono, funciona sin conexión y se actualiza sola.",
+    },
+    {
+        titulo: "Alertas y SOS",
+        descripcion:
+            "Alarma sonora, notificación del sistema y botón SOS que abre WhatsApp con tu contacto de emergencia.",
+    },
+    {
+        titulo: "SOS con cuenta atrás",
+        descripcion:
+            "Antes de avisar a un familiar, una cuenta atrás permite cancelar la alerta y evitar falsos positivos.",
+    },
+    {
+        titulo: "Calidad y documentación",
+        descripcion:
+            "49 pruebas automatizadas del modelo de riesgo, más documentación técnica del modelo clínico y de la hoja de ruta.",
+    },
+];
+
 const COMO_FUNCIONA = [
     {
         titulo: "Reúne las señales",
         descripcion:
-            "Lee en tiempo real variables del cuerpo: frecuencia cardíaca, movimiento y fatiga. En el prototipo estas señales se simulan; en una app real llegarían de sensores validados.",
+            "Lee en tiempo real frecuencia cardíaca, movimiento y fatiga. En la app Android el pulso llega de un reloj por Bluetooth; en la web se simula para demostrar el flujo.",
     },
     {
         titulo: "La IA estima el riesgo",
         descripcion:
-            "Un modelo de pesos (prototipo de IA explicable) combina las señales y devuelve un riesgo de 0 a 99. Al detectar una posible aura, el riesgo sube de inmediato.",
+            "Un modelo de pesos (IA explicable) combina las señales y devuelve un riesgo de 0 a 99. Al detectar una posible aura, el riesgo sube de inmediato.",
     },
     {
         titulo: "Recomienda y alerta",
         descripcion:
-            "Según el nivel de riesgo, la app muestra recomendaciones, dispara notificaciones, activa una alarma sonora y permite un botón SOS hacia un contacto de emergencia.",
+            "Según el nivel, la app muestra recomendaciones, dispara notificaciones, activa una alarma sonora y deja listo el botón SOS hacia un contacto de emergencia.",
     },
 ];
 
 const FASES = [
     {
-        nombre: "Investigación",
+        nombre: "Investigación clínica",
         detalle: "Entender el problema desde la literatura médica y los datos públicos de la OMS.",
         estado: "activo",
         etiqueta: "Completada",
@@ -609,20 +669,26 @@ const FASES = [
         etiqueta: "Completada",
     },
     {
-        nombre: "Prototipo simulado",
-        detalle: "Primera versión funcional con monitoreo en vivo simulado, IA de riesgo, alertas y SOS.",
+        nombre: "Prototipo web (PWA)",
+        detalle: "App web instalable con monitoreo simulado, IA de riesgo, alertas y SOS.",
+        estado: "activo",
+        etiqueta: "Completada",
+    },
+    {
+        nombre: "App Android con Bluetooth",
+        detalle: "Versión móvil que lee el pulso real de un reloj por BLE y usa el acelerómetro del teléfono.",
         estado: "activo",
         etiqueta: "Actual",
     },
     {
-        nombre: "Validación",
-        detalle: "Iterar con usuarios, medir alertas y mejorar la experiencia.",
+        nombre: "Validación con usuarios",
+        detalle: "Iterar con usuarios, medir alertas y reducir los falsos positivos del modelo.",
         estado: "pendiente",
         etiqueta: "Próxima",
     },
     {
-        nombre: "Sensores reales",
-        detalle: "Conectar datos reales de sensores certificados para dejar la simulación.",
+        nombre: "Sensores y monitoreo continuo",
+        detalle: "Sensores validados (EDA, muñeca) y un servicio en primer plano para alertar con la app cerrada.",
         estado: "pendiente",
         etiqueta: "Próxima",
     },
@@ -636,19 +702,28 @@ const FASES = [
 
 const PREGUNTAS = [
     {
-        titulo: "¿NeuroRisk detecta crisis reales ahora mismo?",
-        contenido: "No. En esta versión, las señales se SIMULAN para demostrar el flujo completo: cálculo de riesgo, recomendaciones, notificaciones, alarma y SOS. La detección real requiere sensores certificados y validación médica.",
+        titulo: "¿NeuroFisk detecta crisis reales ahora mismo?",
+        contenido:
+            "No. La app Android ya lee el pulso real de un reloj compatible, y la versión web simula las señales para demostrar el flujo completo. Detectar crisis de forma fiable exige sensores validados (como la actividad electrodérmica) y validación médica: NeuroFisk está en fase 0 de ese proceso.",
     },
     {
         titulo: "¿Cómo funciona la IA integrada?",
-        contenido: "Por ahora es un prototipo de IA explicable: un modelo de pesos que combina frecuencia cardíaca, movimiento, fatiga y presencia de aura para devolver un riesgo de 0 a 99. La idea es que cada decisión sea transparente y justificable.",
+        contenido:
+            "Por ahora es un prototipo de IA explicable: un modelo de pesos que combina frecuencia cardíaca, movimiento, fatiga y presencia de aura para devolver un riesgo de 0 a 99. La idea es que cada decisión sea transparente y justificable.",
     },
     {
         titulo: "¿Qué pasa cuando el riesgo es alto?",
-        contenido: "La app activa una alarma sonora y una notificación, muestra recomendaciones concretas y deja un botón SOS que abre WhatsApp con el mensaje hacia tu contacto de emergencia.",
+        contenido:
+            "La app activa una alarma sonora y una notificación, muestra recomendaciones concretas y deja un botón SOS que abre WhatsApp con el mensaje hacia tu contacto de emergencia. Antes de avisar, una cuenta atrás permite cancelar los falsos positivos.",
+    },
+    {
+        titulo: "¿En qué se diferencian la web y la app Android?",
+        contenido:
+            "La web es una PWA que se instala en el navegador y simula todas las señales. La app Android, hecha con React Native y Expo, además se conecta a un reloj compatible por Bluetooth (servicio estándar 0x180D) y usa el acelerómetro del teléfono para el movimiento.",
     },
     {
         titulo: "¿La app reemplazaría la atención médica?",
-        contenido: "No. Es una herramienta de apoyo y monitoreo complementaria, no un sistema de diagnóstico. No es un dispositivo médico certificado: cualquier decisión de salud debe tomarla personal profesional.",
+        contenido:
+            "No. Es una herramienta de apoyo y monitoreo complementaria, no un sistema de diagnóstico. No es un dispositivo médico certificado: cualquier decisión de salud debe tomarla personal profesional.",
     },
 ];

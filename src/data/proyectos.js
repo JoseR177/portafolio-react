@@ -1,12 +1,12 @@
 export const PROYECTOS = [
     {
-        slug: "neuro-risk",
-        titulo: "NeuroRisk",
+        slug: "neurofisk",
+        titulo: "NeuroFisk",
         descripcion:
-            "App con IA que estima el riesgo de una posible crisis epiléptica a partir de señales en vivo.",
-        badge: "En desarrollo — Prototipo",
+            "App web (PWA) y app Android que estima el riesgo de una posible crisis epiléptica a partir de señales en vivo, con alertas y botón SOS.",
+        badge: "Prototipo — Web + Android",
         destacado: true,
-        imagen: "imagenes/neuro-risk.jpg",
-        tags: ["React", "IA", "Alerta temprana"],
+        imagen: "imagenes/neurofisk.jpg",
+        tags: ["React", "React Native", "IA", "Bluetooth", "PWA"],
     },
 ];

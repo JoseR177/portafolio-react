@@ -5,7 +5,7 @@ export const CV = {
     apellido: "",
     cargo: "Desarrollador web",
     resumen:
-        "Desarrollador web enfocado en front-end con React, HTML, CSS y JavaScript. Me apasiona construir soluciones que realmente importen, como NeuroRisk, un prototipo con IA para estimar el riesgo de crisis epilépticas.",
+        "Desarrollador web enfocado en front-end con React, HTML, CSS y JavaScript. Me apasiona construir soluciones que realmente importen, como NeuroFisk, un prototipo con IA (web y Android) para estimar el riesgo de crisis epilépticas.",
     contacto: {
         email: "jr5716413@gmail.com",
         ubicacion: "Colombia",
@@ -27,7 +27,7 @@ export const CV = {
             lugar: "Portafolio y app propia",
             periodo: "2025 — Presente",
             detalle:
-                "Construyo y mantengo este portafolio con React y Vite, y desarrollo NeuroRisk, un prototipo con IA que estima el riesgo de crisis epilépticas con monitoreo simulado, alertas y SOS.",
+                "Construyo y mantengo este portafolio con React y Vite, y desarrollo NeuroFisk: una app web (PWA) y una app Android con lectura real de pulso por Bluetooth, IA de riesgo, alertas y SOS.",
         },
     ],
     habilidades: [
